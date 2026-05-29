@@ -545,6 +545,94 @@ body {
 .m5 { --szin: #2a3a6b; --szin-vilagos: #5a6a9b; --szin-vil: #e6eaf5; --szin-bor: #b5bbd6; }
 .m0 { --szin: #5a5a4a; --szin-vilagos: #8a8a7a; --szin-vil: #ededdf; --szin-bor: #c8c5b5; }
 
+/* ═══════════════ TANULÁSI TIPP ═══════════════ */
+.tipp-panel {
+  background: linear-gradient(180deg, #fdfaf3 0%, #ffffff 100%);
+  border: 1px solid var(--vonal);
+  border-left: 4px solid var(--arany);
+  border-radius: 3px;
+  margin: 4px 0 16px;
+  overflow: hidden;
+}
+.tipp-fej {
+  padding: 11px 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  user-select: none;
+  background: rgba(184, 146, 58, 0.06);
+}
+.tipp-fej:hover { background: rgba(184, 146, 58, 0.12); }
+.tipp-fej-cim {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--arany-melyebb);
+  flex: 1;
+}
+.tipp-fej-nyil { color: var(--arany); font-size: 11px; transition: transform 0.2s; }
+.tipp-panel.nyitva .tipp-fej-nyil { transform: rotate(180deg); }
+.tipp-body { display: none; padding: 4px 18px 16px; }
+.tipp-panel.nyitva .tipp-body { display: block; }
+.tipp-napi {
+  font-family: 'EB Garamond', serif;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--tinta);
+  background: #ffffff;
+  border: 1px solid var(--pergamen);
+  border-radius: 3px;
+  padding: 11px 14px;
+  margin: 8px 0 14px;
+}
+.tipp-napi strong { color: var(--kek); font-weight: 600; }
+.tipp-szakasz-cim {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--arany-melyebb);
+  margin: 0 0 8px;
+  display: flex; align-items: center; gap: 8px;
+}
+.tipp-szakasz-cim::before { content:''; width:12px; height:1px; background: var(--arany); }
+.tipp-lepesek { list-style: none; padding: 0; counter-reset: tl; }
+.tipp-lepesek li {
+  position: relative;
+  padding: 7px 0 7px 42px;
+  border-bottom: 1px dashed var(--pergamen);
+  font-family: 'EB Garamond', serif;
+  font-size: 14px;
+  line-height: 1.5;
+  counter-increment: tl;
+}
+.tipp-lepesek li:last-child { border-bottom: none; }
+.tipp-lepesek li::before {
+  content: counter(tl);
+  position: absolute; left: 0; top: 7px;
+  width: 26px; height: 26px;
+  background: var(--kek); color: var(--kremes);
+  font-family: 'Inter', sans-serif; font-weight: 700; font-size: 12px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.tipp-lepes-cim { font-weight: 600; color: var(--tinta); }
+.tipp-ido {
+  font-family: 'Inter', sans-serif; font-size: 10px;
+  color: var(--arany-melyebb); font-weight: 600;
+  margin-left: 6px;
+}
+.tipp-lab {
+  margin-top: 12px; font-style: italic; font-size: 13px;
+  color: var(--tinta-vilagos);
+  padding: 8px 12px; background: #fdfaf3;
+  border-left: 3px solid var(--arany-vil); border-radius: 0 2px 2px 0;
+}
+
 /* ═══════════════ ÖSSZEFOGLALÓ ═══════════════ */
 .os-bevez {
   background: linear-gradient(135deg, #1a1f2e 0%, #2a2f3e 100%);
@@ -943,32 +1031,35 @@ var T={
 };
 
 var NAPOK=[
- {h:1,d:"okt. 19. (H)",m:1,t:["Á/1","Á/2"],tip:"tan"},
- {h:1,d:"okt. 20. (K)",m:1,t:["Á/3","Á/4"],tip:"tan"},
- {h:1,d:"okt. 21. (Sze)",m:2,t:["Á/5","Á/6"],tip:"tan"},
- {h:1,d:"okt. 22. (Cs)",m:2,t:["Á/7","Á/8"],tip:"tan"},
- {h:1,d:"okt. 23. (P)",m:3,t:["Á/9","Á/10","Á/11"],tip:"tan",hosszu:1},
+ {h:1,d:"okt. 19. (H)",m:1,t:["Á/1","Á/2"],tip:"tan",tipp:1,tippmegj:"A nyitó nap két alapozó tétellel. Az <strong>Á/1 (hatalommegosztás)</strong> elméleti, történeti ív — a szerzőkre figyelj (Arisztotelész → Locke → Montesquieu → Constant). Az <strong>Á/2 (Ogy–Kormány)</strong> ennek a gyakorlati magyar leképezése: parlamentáris köztársaság, konstruktív bizalmatlanság. A kettő logikailag egymásra épül."},
+ {h:1,d:"okt. 20. (K)",m:1,t:["Á/3","Á/4"],tip:"tan",tipp:1,tippmegj:"Két tétel ma — oszd ketté az időt, kb. <strong>60-75 perc/tétel</strong>. Ha a két tétel összefügg, kezeld egy folyamatként; ha nem, vázold őket külön lapra."},
+ {h:1,d:"okt. 21. (Sze)",m:2,t:["Á/5","Á/6"],tip:"tan",tipp:1,tippmegj:"Két tétel ma — oszd ketté az időt, kb. <strong>60-75 perc/tétel</strong>. Ha a két tétel összefügg, kezeld egy folyamatként; ha nem, vázold őket külön lapra."},
+ {h:1,d:"okt. 22. (Cs)",m:2,t:["Á/7","Á/8"],tip:"tan",tipp:1,tippmegj:"Két tétel ma — oszd ketté az időt, kb. <strong>60-75 perc/tétel</strong>. Ha a két tétel összefügg, kezeld egy folyamatként; ha nem, vázold őket külön lapra."},
+ {h:1,d:"okt. 23. (P)",m:3,t:["Á/9","Á/10","Á/11"],tip:"tan",hosszu:1,tipp:1,tippmegj:"<strong>Hosszú nap</strong>, három összefüggő tétel a Kormányról: fogalom (Á/9) → működés/kormányülés (Á/10) → előkészítés/KÁT (Á/11). Kezeld <strong>egyetlen folyamatként</strong> — a Kormány „életét\" követed végig. Számolj 3 órával, tarts több szünetet."},
  {h:1,d:"okt. 24. (Szo)",m:1,t:[],tip:"ism",tema:"Ismétlés — 1. hét anyaga · Á/1—Á/11 összefoglaló",osszef:"h1"},
  {h:1,d:"okt. 25. (V)",m:0,t:[],tip:"pih",tema:"Pihenőnap — kötelező kikapcsolódás"},
- {h:2,d:"okt. 26. (H)",m:3,t:["Á/12","Á/13"],tip:"tan"},
- {h:2,d:"okt. 27. (K)",m:3,t:["Á/14","Á/15"],tip:"tan"},
- {h:2,d:"okt. 28. (Sze)",m:4,t:["Á/16","Á/17"],tip:"tan"},
- {h:2,d:"okt. 29. (Cs)",m:4,t:["Á/18","Á/19"],tip:"tan"},
- {h:2,d:"okt. 30. (P)",m:4,t:["Á/20","Á/21","Á/22"],tip:"tan",hosszu:1},
+ {h:2,d:"okt. 26. (H)",m:3,t:["Á/12","Á/13"],tip:"tan",tipp:1,tippmegj:"Két tétel ma — oszd ketté az időt, kb. <strong>60-75 perc/tétel</strong>. Ha a két tétel összefügg, kezeld egy folyamatként; ha nem, vázold őket külön lapra."},
+ {h:2,d:"okt. 27. (K)",m:3,t:["Á/14","Á/15"],tip:"tan",tipp:1,tippmegj:"Két tétel ma — oszd ketté az időt, kb. <strong>60-75 perc/tétel</strong>. Ha a két tétel összefügg, kezeld egy folyamatként; ha nem, vázold őket külön lapra."},
+ {h:2,d:"okt. 28. (Sze)",m:4,t:["Á/16","Á/17"],tip:"tan",tipp:1,tippmegj:"Két tétel ma — oszd ketté az időt, kb. <strong>60-75 perc/tétel</strong>. Ha a két tétel összefügg, kezeld egy folyamatként; ha nem, vázold őket külön lapra."},
+ {h:2,d:"okt. 29. (Cs)",m:4,t:["Á/18","Á/19"],tip:"tan",tipp:1,tippmegj:"Két tétel ma — oszd ketté az időt, kb. <strong>60-75 perc/tétel</strong>. Ha a két tétel összefügg, kezeld egy folyamatként; ha nem, vázold őket külön lapra."},
+ {h:2,d:"okt. 30. (P)",m:4,t:["Á/20","Á/21","Á/22"],tip:"tan",hosszu:1,tipp:1,tippmegj:"<strong>Hosszú nap</strong>, három eltérő tétel: tevékenységfajták (Á/20), hatósági felügyelet típusai (Á/21), nemzeti vagyon (Á/22). Itt <strong>nincs közös ív</strong> — kezeld őket külön, és súlyozz a kérdésszám szerint. A nemzeti vagyon 4 kategóriáját és a felügyelet 3 típusát külön lapra vázold."},
  {h:2,d:"okt. 31. (Szo)",m:4,t:[],tip:"ism",tema:"Ismétlés — 2. hét anyaga · Á/12—Á/22 összefoglaló",osszef:"h2"},
  {h:2,d:"nov. 1. (V)",m:0,t:[],tip:"pih",tema:"Pihenőnap — kötelező kikapcsolódás"},
- {h:3,d:"nov. 2. (H)",m:5,t:["Á/23","Á/24"],tip:"tan"},
- {h:3,d:"nov. 3. (K)",m:5,t:["Á/25","Á/26"],tip:"tan"},
- {h:3,d:"nov. 4. (Sze)",m:5,t:["Á/27","Á/28"],tip:"tan"},
- {h:3,d:"nov. 5. (Cs)",m:5,t:["Á/29","Á/30"],tip:"tan"},
- {h:3,d:"nov. 6. (P)",m:5,t:["Á/31"],tip:"tan"},
+ {h:3,d:"nov. 2. (H)",m:5,t:["Á/23","Á/24"],tip:"tan",tipp:1,tippmegj:"Két tétel ma — oszd ketté az időt, kb. <strong>60-75 perc/tétel</strong>. Ha a két tétel összefügg, kezeld egy folyamatként; ha nem, vázold őket külön lapra."},
+ {h:3,d:"nov. 3. (K)",m:5,t:["Á/25","Á/26"],tip:"tan",tipp:1,tippmegj:"Két tétel ma — oszd ketté az időt, kb. <strong>60-75 perc/tétel</strong>. Ha a két tétel összefügg, kezeld egy folyamatként; ha nem, vázold őket külön lapra."},
+ {h:3,d:"nov. 4. (Sze)",m:5,t:["Á/27","Á/28"],tip:"tan",tipp:1,tippmegj:"Két tétel ma — oszd ketté az időt, kb. <strong>60-75 perc/tétel</strong>. Ha a két tétel összefügg, kezeld egy folyamatként; ha nem, vázold őket külön lapra."},
+ {h:3,d:"nov. 5. (Cs)",m:5,t:["Á/29","Á/30"],tip:"tan",tipp:1,tippmegj:"Két tétel ma — oszd ketté az időt, kb. <strong>60-75 perc/tétel</strong>. Ha a két tétel összefügg, kezeld egy folyamatként; ha nem, vázold őket külön lapra."},
+ {h:3,d:"nov. 6. (P)",m:5,t:["Á/31"],tip:"tan",tipp:1,tippmegj:"Egyetlen tétel ma — van időd alaposan megérteni a logikai ívét, mielőtt vázlatot készítesz."},
  {h:3,d:"nov. 7. (Szo)",m:5,t:[],tip:"ism",tema:"Ismétlés — 3. hét anyaga + teljes áttekintés · Á/23—Á/31",osszef:"h3"},
  {h:3,d:"nov. 8. (V)",m:0,t:[],tip:"pih",tema:"Pihenőnap — kötelező kikapcsolódás"},
- {h:4,d:"nov. 9. (H)",m:0,t:[],tip:"on",tema:"ZÁRÓ — teljes önellenőrzés, gyenge pontok pótlása, korai lefekvés"},
+ {h:4,d:"nov. 9. (H)",m:0,t:[],tip:"on",tema:"ZÁRÓ — teljes önellenőrzés, gyenge pontok pótlása, korai lefekvés",tipp:1},
  {h:4,d:"nov. 10. (K)",m:0,t:[],tip:"viz",tema:"ÍRÁSBELI VIZSGA — Sok sikert!"}
 ];
 
 
+
+var ALTRITMUS='<div class="tipp-szakasz-cim">Általános napi ritmus (~2-3 óra)</div><ul class="tipp-lepesek"><li><span class="tipp-lepes-cim">Ráhangolódás<span class="tipp-ido">~10 perc</span></span><br>Nyisd meg a tétel(eke)t, és olvasd át <em>csak a kérdéseket</em> — a 15, 10 és 5 pontosakat is. Így előre látod, hová fut ki a téma.</li><li><span class="tipp-lepes-cim">Megértő átolvasás<span class="tipp-ido">~25-30 perc</span></span><br>Olvasd át a jegyzetet egyszer, végig, <em>jegyzetelés nélkül</em>. A cél nem a rögzítés, hanem a logikai ív és az ok-okozat megértése.</li><li><span class="tipp-lepes-cim">Saját vázlat fejből<span class="tipp-ido">~30 perc</span></span><br>Csukd be a jegyzetet, és <em>fejből</em> vázolj papírra (kulcsszavak, fogalmak, törvényszámok). Aztán nyisd ki, és egészítsd ki, ami kimaradt. Ez lesz a szombati ismétlés alapanyaga — ne dobd el!</li><li><span class="tipp-lepes-cim">A 10 és 5 pontos kérdések<span class="tipp-ido">~30 perc</span></span><br>Ezek a fő tételhez <em>csatolt</em> kiegészítések. Mindegyikhez elég egy-két mondatos vázlatpont. Figyelj a pontos megnevezésekre, számokra és törvényszámokra — írásban ezek értéket érnek.</li><li><span class="tipp-lepes-cim">Hangos önellenőrzés<span class="tipp-ido">~25 perc</span></span><br>Tegyél félre mindent, és mondd el <em>hangosan</em>, mintha vizsgáztatnád magad. Ahol megakadsz — és csak ott — nézz vissza. Ismételd, amíg gördülékenyen megy.</li><li><span class="tipp-lepes-cim">Rövid írásgyakorlás<span class="tipp-ido">~15 perc</span></span><br>Zárd a napot egy mini-próbával: 15 perc alatt írd le vázlatosan a 15 pontos kérdés válaszát, ahogy a vizsgán tennéd. Utána vesd össze a jegyzettel — mi maradt ki?</li></ul><div class="tipp-lab">A 2-3 órát ne egyben told végig: kb. 45-50 percenként tarts 5-10 perc szünetet. A cél a megértés és egy használható vázlat, nem a szó szerinti tudás — azt az ismétlések építik fel.</div>';
+var ONRITMUS='<div class="tipp-szakasz-cim">Záró önellenőrzés ritmusa (~2-3 óra)</div><ul class="tipp-lepesek"><li><span class="tipp-lepes-cim">Ne olvass új anyagot</span><br>Ma nem tanulsz, hanem <em>visszakérdezel</em>. Vedd elő a 3 hét alatt készített saját vázlataidat.</li><li><span class="tipp-lepes-cim">Hangos felidézés tételenként</span><br>Mind a 31 tételt fusd át <em>fejből, hangosan</em> — mintha a vizsgáztatónak magyaráznál. Csak akkor lapozz a jegyzethez, ha elakadsz.</li><li><span class="tipp-lepes-cim">A gyenge pontok pótlása</span><br>Amelyik tételnél akadozol, azt jelöld meg, és célzottan nézd át újra. A három szombati összefoglaló kompakt térképe most a fő referenciád.</li><li><span class="tipp-lepes-cim">Korai lefekvés</span><br>Holnap a vizsga — aludj legalább 7-8 órát, egyél könnyű reggelit, és érkezz 15-20 perccel korábban.</li></ul><div class="tipp-lab">Az utolsó nap nem a bemagolásé, hanem a megnyugvásé. Aki idáig követte a tanmenetet, annak a tudás már a fejében van — most a felidézés gördülékenységét csiszolod.</div>';
 
 var TN={
   tan:"Új anyag", ism:"Ismétlés", on:"Önellenőrzés",
@@ -1127,6 +1218,19 @@ function show(h){
         osDiv.style.padding="14px 16px";
         osDiv.innerHTML=OSSZEF[nap.osszef];
         body.appendChild(osDiv);
+      }
+
+      // Tanulási tipp panel (tan/on napokon)
+      if(nap.tipp){
+        var tippWrap=document.createElement("div");
+        tippWrap.style.padding="14px 16px 0";
+        var ritmus=(nap.tip==="on")?ONRITMUS:ALTRITMUS;
+        var napiHtml=nap.tippmegj?('<div class="tipp-napi">'+nap.tippmegj+'</div>'):'';
+        tippWrap.innerHTML='<div class="tipp-panel"><div class="tipp-fej"><span class="tipp-fej-cim">📖 Hogyan dolgozd fel ezt a napot?</span><span class="tipp-fej-nyil">▼</span></div><div class="tipp-body">'+napiHtml+ritmus+'</div></div>';
+        var panel=tippWrap.querySelector(".tipp-panel");
+        var pfej=tippWrap.querySelector(".tipp-fej");
+        pfej.onclick=function(e){e.stopPropagation();panel.classList.toggle("nyitva");};
+        body.appendChild(tippWrap);
       }
 
       nap.t.forEach(function(k){
